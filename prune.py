@@ -23,3 +23,8 @@ print(torch_model)
 print("Pruning model...")
 pruned_torch_model = prune_model(torch_model, amount=0.1)
 print("Model pruned.")
+
+#evalusate after pruning
+model = YOLO('yolov8s_trained_pruned.pt')
+results = model.val(data="coco8.yaml")
+print(f"mAP50-95: {results.box.map}")
